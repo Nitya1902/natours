@@ -106,6 +106,10 @@ const deleteTour=(req,res)=>{
     });
 };
 
+const getAllUsers=(req,res)=>{
+    
+}
+
 // app.get('/api/v1/tours',getALLTours);
 // app.get('/api/v1/tours/:id',getTour);
 // // app.post('/api/v1/tours',createTour);
@@ -121,9 +125,15 @@ app.route('/api/v1/tours/:id')
 .delete(deleteTour)
 .patch(updateTour);
 
-app.route('/api/v1/users')
+app
+.route('/api/v1/users')
 .get(getAllUsers)
 .post(createUsers)
+
+app.route('/api/v1/users/:id')
+.get(getUser)
+.patch(updateUser)
+.delete(deleteUser)
 
 //start server
 const port =3000;
