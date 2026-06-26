@@ -1,18 +1,22 @@
 //npm start = noemon server.js this we had done by going to package.json
 //we have not downloaded nodemon as dev dependency but it is still working as we have downloaded it globally 
-const dotenv = require('dotenv');
 
-dotenv.config({ path: './config.env' });
 
 const express = require('express');
 const morgan= require('morgan');
+
+if(process.env.NODE_ENV==='development'){
+    app.use(morgan('dev'));
+}
+
 const tourRouter=require('./routes/tourRoutes')
 const userRouter=require('./routes/userRoutes')
 const app= express();
 
 //middleware
-app.use(morgan('dev'));
+
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`))//we pass the directory from which we need to pass the static file
 app.use((req,res,next)=>{
     console.log('hello from middleware');
     next();
